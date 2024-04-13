@@ -46,3 +46,6 @@ add_executable(namespaces src/namespaces.cpp)
 
 # Compiling bootcamp demo code
 add_executable(s24_my_ptr src/spring2024/s24_my_ptr.cpp)
+
+# Compiling Additional code
+add_executable(understanding_move_semantics src/understanding_move_semantics.cpp)

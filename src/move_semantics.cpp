@@ -70,10 +70,16 @@ int main() {
 
   // Now, we move the values of this array to another lvalue.
   std::vector<int> stealing_ints = std::move(int_array);
+  // std::vector<int> &&stealing_ints = std::move(int_array);
 
-  // Rvalue references are references that refer to the data itself, as opposed
-  // to a lvalue. Calling std::move on a lvalue (such as stealing_ints) will
-  // result in the expression being cast to a rvalue reference.
+  // std::cout << int_array[0] << std::endl; -> Results in Segmentation Fault
+  // stealing_ints is the owner of the data and hence cant access data through
+  // int_array
+
+  // Rvalue references are references that refer to the data itself, as
+  // opposed to a lvalue. Calling std::move on a lvalue (such as
+  // stealing_ints) will result in the expression being cast to a rvalue
+  // reference.
   std::vector<int> &&rvalue_stealing_ints = std::move(stealing_ints);
 
   // However, note that after this, it is still possible to access the data in
@@ -92,7 +98,7 @@ int main() {
 
   // It would be unwise to try to do anything with int_array2 here. Uncomment
   // the code to try it out! (On my machine, this segfaults...) NOTE: THIS MIGHT
-  // WORK FOR YOU. THIS DOES NOT MEAN THAT THIS IS WISE TO DO! 
+  // WORK FOR YOU. THIS DOES NOT MEAN THAT THIS IS WISE TO DO!
   // std::cout << int_array2[1] << std::endl;
 
   // If we don't move the lvalue in the caller context to any lvalue in the
